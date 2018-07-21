@@ -1,4 +1,7 @@
 const webpack = require('webpack');
+const config = require('./config');
+
+const API_HOST = config.apiHost;
 
 module.exports = {
   entry: [
@@ -27,6 +30,15 @@ module.exports = {
   ],
   devServer: {
     contentBase: './dist',
-    hot: true
+    historyApiFallback: true,
+    hot: true,
+    proxy: {
+      "/api": {
+        "target": API_HOST,
+        "pathRewrite": { '^/api': '' },
+        "changeOrigin": true,
+        "secure": false
+      }
+    }
   }
 };
