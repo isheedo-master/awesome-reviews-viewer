@@ -10,16 +10,32 @@ import {
   actionSetAppFetching,
   actionIncrementPage,
 } from '../../../actions';
+import { groupTerms, orderTerms } from '../../../utils';
+
 import {
   AppWrapper,
   Centralizer
 } from './style';
 import baseStyles from '../../../styles/baseStyles';
-import Loader from '../../stateless/Loader';
-import ReviewsList from '../../stateless/ReviewsList';
 
+import Loader from '../../stateless/Loader';
+import Filters from '../../stateless/Filters';
+import ReviewsGroup from '../ReviewsGroup';
+
+
+const initialState = {
+  groupingTerm: groupTerms.none.name,
+  stars: 5,
+  searchTerm: '',
+  orderTerm: orderTerms.desc.name,
+};
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+  }
+
   componentDidMount() {
     const { dispatch, reviews, nextPage } = this.props;
 
@@ -54,14 +70,44 @@ class App extends Component {
     }
   }
 
+  backToTop = () => {
+    window.scrollTo(0, 0);
+  }
+
+  onFilterChange = (e, stateKey) => {
+    this.setState({
+      [stateKey]: e.target.value,
+    });
+  }
+
+  onReset = () => {
+    this.setState({
+      ...initialState,
+    })
+  }
+
 
   render() {
     baseStyles();
     const { isAppFetching, reviews, hasMore } = this.props;
+    const { groupingTerm, stars, searchTerm, orderTerm } = this.state;
 
     return (
       <AppWrapper>
-        <ReviewsList reviews={reviews} />
+        <Filters
+          stars={stars}
+          searchTerm={searchTerm}
+          orderTerm={orderTerm}
+          onFilterChange={this.onFilterChange}
+          onReset={this.onReset}
+        />
+        <ReviewsGroup
+          reviews={reviews}
+          groupingTerm={groupingTerm}
+          stars={stars}
+          searchTerm={searchTerm}
+          orderTerm={orderTerm}
+        />
         {hasMore ? (
           isAppFetching && (
           <Centralizer>
@@ -69,7 +115,7 @@ class App extends Component {
           </Centralizer>
         )) : (
           <Centralizer>
-              UH-OH! SEEMS YOU'VE READ ALL REVIEWS!
+            <a onClick={this.backToTop}>Back to top</a>
           </Centralizer>
         )}
       </AppWrapper>
