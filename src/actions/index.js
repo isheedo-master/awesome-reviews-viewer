@@ -28,7 +28,7 @@ export function actionFetchReviews(id, callback) {
         }
       });
   };
-}
+};
 
 // Actions to set data
 
@@ -38,7 +38,7 @@ export function actionSetReviews(reviews, dispatch) {
     type: actionTypes.SET_REVIEWS,
     reviews,
   };
-}
+};
 
 // Actions to set statuses
 
@@ -46,25 +46,25 @@ export function actionIncrementPage() {
   return {
     type: actionTypes.SET_NEXT_PAGE,
   };
-}
+};
 
 export function actionSetAppLoading(status) {
   return {
     type: actionTypes.IS_APP_LOADING,
     status,
   };
-}
+};
 
 export function actionSetAppFetching(status) {
   return {
     type: actionTypes.IS_FETCHING,
     status,
   };
-}
+};
 
 export function actionSetHasMore(status) {
   return {
     type: actionTypes.HAS_MORE,
     status,
   };
-}
+};

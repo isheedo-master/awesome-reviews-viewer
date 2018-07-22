@@ -18,7 +18,7 @@ export const groupTerms = {
     name: 'month',
     label: 'Month',
   },
-}
+};
 
 export const orderTerms = {
   asc: {
@@ -29,7 +29,7 @@ export const orderTerms = {
     name: 'desc',
     label: 'Descending',
   },
-}
+};
 
 
 export function groupReviews(reviews, groupTerm, orderTerm) {
@@ -59,11 +59,11 @@ export function groupReviews(reviews, groupTerm, orderTerm) {
       return orderBy(processedReviews, review => review.reviewCreated, orderTerm);
   }
   return processedReviews;
-}
+};
 
 export function filterReviews(reviews, stars) {
   return reviews.filter(review => review.stars <= stars);
-}
+};
 
 export function searchReviews(reviews, term) {
   return reviews.filter(review => {
@@ -71,4 +71,4 @@ export function searchReviews(reviews, term) {
     review.content.toLowerCase().indexOf(term) > -1 ||
     review.productTitle.toLowerCase().indexOf(term) > -1;
   });
-}
+};

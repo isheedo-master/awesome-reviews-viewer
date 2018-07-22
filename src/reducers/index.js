@@ -7,7 +7,7 @@ function isAppLoading(state = false, action) {
       return action.status;
   }
   return state;
-}
+};
 
 function isAppFetching(state = false, action) {
   switch (action.type) {
@@ -15,7 +15,7 @@ function isAppFetching(state = false, action) {
       return action.status;
   }
   return state;
-}
+};
 
 function hasMore(state = true, action) {
   switch (action.type) {
@@ -23,7 +23,7 @@ function hasMore(state = true, action) {
       return action.status;
   }
   return state;
-}
+};
 
 function reviews(state = [], action) {
   switch (action.type) {
@@ -31,7 +31,7 @@ function reviews(state = [], action) {
       return state.concat(action.reviews);
   }
   return state;
-}
+};
 
 function nextPage(state = 1, action) {
   switch (action.type) {
@@ -39,7 +39,7 @@ function nextPage(state = 1, action) {
       return state + 1;
   }
   return state;
-}
+};
 
 export default combineReducers({
   isAppLoading,
