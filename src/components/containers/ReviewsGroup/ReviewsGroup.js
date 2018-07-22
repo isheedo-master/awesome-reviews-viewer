@@ -1,15 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import ReviewsList from '../../stateless/ReviewsList';
+import Loader from '../../stateless/Loader';
 import {
   groupReviews,
   filterReviews,
   searchReviews,
   groupTerms,
-  orderTerm,
 } from '../../../utils';
 
 import { Centralizer } from '../App/style';
+import { ReviewsIndicator } from './style';
 
 const ReviewsGroup = ({
   reviews,
@@ -29,7 +30,7 @@ const ReviewsGroup = ({
       return Object.keys(reviewsGrouped).sort().map(group => {
         return (
           <div key={group}>
-            <h1>{group}</h1>
+            <ReviewsIndicator>{group}</ReviewsIndicator>
             <ReviewsList reviews={reviewsGrouped[group]} />
           </div>
         );
@@ -39,7 +40,7 @@ const ReviewsGroup = ({
 
   return (
     <div>
-      {`Displaying ${filteredReviews.length} reviews`}
+      <ReviewsIndicator>{`Displaying ${filteredReviews.length} reviews:`}</ReviewsIndicator>
       {filteredReviews.length > 0 ? renderGroups(groupingTerm) : (
         <Centralizer>
           <h4>Sorry no reviews matched your criteria</h4>
@@ -49,4 +50,4 @@ const ReviewsGroup = ({
   );
 }
 
-export default ReviewsGroup;
+export default Loader('isAppLoading', 'LOADING REVIEWS')(ReviewsGroup)

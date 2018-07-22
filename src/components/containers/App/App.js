@@ -18,7 +18,6 @@ import {
 } from './style';
 import baseStyles from '../../../styles/baseStyles';
 
-import Loader from '../../stateless/Loader';
 import Filters from '../../stateless/Filters';
 import ReviewsGroup from '../ReviewsGroup';
 
@@ -89,7 +88,7 @@ class App extends Component {
 
   render() {
     baseStyles();
-    const { isAppFetching, reviews, hasMore } = this.props;
+    const { isAppFetching, isAppLoading, reviews, hasMore } = this.props;
     const { groupingTerm, stars, searchTerm, orderTerm } = this.state;
 
     return (
@@ -97,6 +96,7 @@ class App extends Component {
         <Filters
           stars={stars}
           searchTerm={searchTerm}
+          groupingTerm={groupingTerm}
           orderTerm={orderTerm}
           onFilterChange={this.onFilterChange}
           onReset={this.onReset}
@@ -107,6 +107,7 @@ class App extends Component {
           stars={stars}
           searchTerm={searchTerm}
           orderTerm={orderTerm}
+          isAppLoading={isAppLoading}
         />
         {hasMore ? (
           isAppFetching && (
@@ -136,7 +137,4 @@ const mapStateToProps = (state) => ({
   hasMore: state.hasMore,
 });
 
-export default connect(mapStateToProps)(
-  Loader('isAppLoading', 'LOADING REVIEWS')
-  (App)
-);
+export default connect(mapStateToProps)(App);

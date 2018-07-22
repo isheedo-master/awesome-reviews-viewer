@@ -10,10 +10,10 @@ export const groupTerms = {
     name:'day',
     label: 'Day',
   },
-  // week: {
-  //   name: 'week',
-  //   label: 'Week',
-  // },
+  week: {
+    name: 'week',
+    label: 'Week',
+  },
   month: {
     name: 'month',
     label: 'Month',
@@ -46,6 +46,12 @@ export function groupReviews(reviews, groupTerm, orderTerm) {
       processedReviews = groupBy(
         orderBy(processedReviews, review => review.reviewCreated, orderTerm),
         review => moment(review.reviewCreated).format('MMMM')
+      );
+      break;
+    case groupTerms.week.name:
+      processedReviews = groupBy(
+        orderBy(processedReviews, review => review.reviewCreated, orderTerm),
+        review => moment(review.reviewCreated).startOf('isoWeek').format('DD.MM')
       );
       break;
     case groupTerms.none.name:

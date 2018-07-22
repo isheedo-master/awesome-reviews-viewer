@@ -22,9 +22,9 @@ export function actionFetchReviews(id, callback) {
           console.warn('Error: ', err);
         } else {
           dispatch(actionSetReviews(res.body.reviews, dispatch));
-          dispatch(actionSetAppLoading(false));
           dispatch(actionSetHasMore(res.body.hasMore));
-          if (callback) callback();
+          dispatch(actionSetAppLoading(false));
+          if (res.body.hasMore) callback;
         }
       });
   };
