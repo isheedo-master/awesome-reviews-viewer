@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { times } from 'lodash';
 
@@ -121,6 +122,15 @@ const Filters = ({
 			{renderResetButton()}
 		</FilterBar>
 	);
+};
+
+Filters.propTypes = {
+	onFilterChange: PropTypes.func.isRequired,
+	onReset: PropTypes.func.isRequired,
+	stars: PropTypes.number.isRequired,
+	searchTerm: PropTypes.string.isRequired,
+	orderTerm: PropTypes.string.isRequired,
+	groupingTerm: PropTypes.string.isRequired,
 };
 
 export default Filters;

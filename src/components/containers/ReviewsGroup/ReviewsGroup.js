@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ReviewsList from '../../stateless/ReviewsList';
 import Loader from '../../stateless/Loader';
@@ -48,6 +49,14 @@ const ReviewsGroup = ({
 			)}
 		</div>
 	);
+};
+
+ReviewsGroup.propTypes = {
+	reviews: PropTypes.array.isRequired,
+	searchTerm: PropTypes.string,
+	groupingTerm: PropTypes.string,
+	orderTerm: PropTypes.string,
+	stars: PropTypes.number.isRequired,
 };
 
 export default Loader('isAppLoading', 'LOADING REVIEWS')(ReviewsGroup);

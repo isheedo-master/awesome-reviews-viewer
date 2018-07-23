@@ -127,6 +127,9 @@ class App extends Component {
 App.propTypes = {
   reviews: PropTypes.array.isRequired,
   isAppLoading: PropTypes.bool.isRequired,
+  isAppFetching: PropTypes.bool.isRequired,
+  nextPage: PropTypes.number.isRequired,
+  hasMore: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { times, truncate } from 'lodash';
 import FontAwesome from 'react-fontawesome';
 
@@ -61,6 +62,10 @@ const Review = ({
 			</ReviewContent>
 		</ReviewBody>
 	);
+};
+
+Review.propTypes = {
+	review: PropTypes.object.isRequired,
 };
 
 export default Review;
